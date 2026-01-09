@@ -273,3 +273,49 @@ elif "Affidavit of Financial Hardship" in doc_type:
     st.code(affidavit_template, language="text")
     st.download_button("Download Affidavit Draft", affidavit_template, "affidavit_hardship.txt")
 
+# --- REPLACED LEGAL DOCUMENT AUTOMATION SECTION ---
+st.divider()
+st.header("⚖️ Court Document Automation")
+st.info("Draft urgent motions and legal responses based on current Case Strategy.")
+
+# The Menu for Brian and Regina
+doc_type = st.selectbox("Select Document Type:", [
+    "Notice of Motion: Interim Distribution",
+    "Affidavit of Financial Hardship & Executor Misconduct",
+    "Response to Estate Executors"
+])
+
+# The Combined Logic Engine
+if st.button("Generate Draft Document"):
+    st.write("### 📝 Draft Preview")
+    
+    # 1. Logic for the Motion
+    if "Notice of Motion" in doc_type:
+        template = f"""
+        ONTARIO SUPERIOR COURT OF JUSTICE
+        BETWEEN: Brian Charles Lubotta (Applicant) 
+        AND: David Michael Lubotta and Maxwell Gotlieb (Respondents)
+        
+        The Applicant moves for an Order for an interim distribution 
+        from the Estate of Sheila Renee Lubotta in the amount of $700,000.00 [cite: 2026-01-04].
+        """
+        st.code(template, language="text")
+        st.download_button("Download Motion", template, "motion_draft.txt")
+
+    # 2. Logic for the Affidavit (The Fraud and Hostility focus)
+    elif "Affidavit of Financial Hardship" in doc_type:
+        affidavit_template = f"""
+        AFFIDAVIT OF BRIAN CHARLES LUBOTTA
+        
+        1. I believe the Respondents, David Michael Lubotta and Maxwell Gotlieb, have engaged in fraudulent activities [cite: 2026-01-04].
+        2. There has been a complete breakdown of communication; Respondents have acted with hostility and psychological mind games [cite: 2026-01-04].
+        3. The Respondents have not acted in good faith and have breached fiduciary duties [cite: 2026-01-04].
+        4. I require an interim distribution of $700,000.00 to alleviate manufactured hardship and fund my business enterprise [cite: 2026-01-04, 2026-01-05].
+        """
+        st.code(affidavit_template, language="text")
+        st.download_button("Download Affidavit", affidavit_template, "affidavit_hardship.txt")
+
+    # 3. Logic for standard responses
+    else:
+        st.write("Template for standard response coming soon.")
+
