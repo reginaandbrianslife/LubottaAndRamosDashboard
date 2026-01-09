@@ -259,4 +259,17 @@ with right_col:
     st.info("Market_Watcher: Competitor price drop detected.")
     st.success("Logic_Engine: Financial Freedom Strategy updated.")
     st.warning("Decision_Logic: Rent/Debt targets locked for clearance.")
+# Add this condition to your existing doc_type logic:
+elif "Affidavit of Financial Hardship" in doc_type:
+    affidavit_template = f"""
+    AFFIDAVIT OF BRIAN CHARLES LUBOTTA
+    
+    1. The Respondents, David Michael Lubotta and Maxwell Gotlieb, have breached their fiduciary duties [cite: 2026-01-04].
+    2. I believe the Respondents have committed fraud in the administration of the Estate of Sheila Renee Lubotta [cite: 2026-01-04].
+    3. There is a complete breakdown of communication; Respondents have acted with hostility and in bad faith [cite: 2026-01-04].
+    4. I am being subjected to psychological games intended to exacerbate my financial hardship [cite: 2026-01-04].
+    5. I request an interim distribution of $700,000 to resolve debts and fund my enterprise [cite: 2026-01-04].
+    """
+    st.code(affidavit_template, language="text")
+    st.download_button("Download Affidavit Draft", affidavit_template, "affidavit_hardship.txt")
 
