@@ -74,3 +74,27 @@ with right_col:
 
 # BOTTOM ROW: COMMAND INPUT
 st.text_input("Master Command Entry:", placeholder="e.g., 'Agent, recalibrate for a $75,000 fixed cost'")
+# --- ADD THIS TO THE BOTTOM OF YOUR app.py FILE ---
+
+st.divider()
+st.header("🏆 Financial Freedom Tracker")
+
+# Define your real-world targets
+rent_debt = 84000
+credit_card_debt = 20000
+total_target = rent_debt + credit_card_debt
+
+# Calculate how many sales (at your recommended price) it takes to clear this
+# Assuming a $90 profit per unit after variable costs
+profit_per_unit = price - 10 
+units_to_freedom = int(total_target / profit_per_unit)
+
+col_a, col_b = st.columns(2)
+with col_a:
+    st.write(f"### Total Debt Target: ${total_target:,}")
+    st.progress(0, text="Freedom Progress: 0%")
+with col_b:
+    st.write("### AI Freedom Strategy")
+    st.success(f"To reach absolute freedom, the Legacy App must achieve **{units_to_freedom}** total sales.")
+    st.info(f"Targeting {int(units_to_freedom/12)} sales per month for a 12-month clearance.")
+
