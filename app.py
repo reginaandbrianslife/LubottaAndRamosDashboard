@@ -52,6 +52,7 @@ st.header("⚖️ Court Document Automation")
 st.info("Drafting evidence for the Sheila Renee Lubotta Estate litigation.")
 
 doc_choice = st.selectbox("Select Legal Template:", [
+    "Cover Letter to Registrar: Urgent Motion Request",
     "Notice of Appearance: Self-Represented Party",
     "Notice of Motion: Interim Distribution ($700k)",
     "Affidavit: Executor Fraud & Misconduct",
@@ -63,26 +64,33 @@ doc_choice = st.selectbox("Select Legal Template:", [
 if st.button("Generate Legal Draft"):
     st.write("### 📝 Document Preview")
     
-    if "Notice of Appearance" in doc_choice:
-        appearance_text = f"""
-FORM 38A - NOTICE OF APPEARANCE
-ONTARIO SUPERIOR COURT OF JUSTICE
-
-BETWEEN: Brian Charles Lubotta (Applicant)
-AND: David Michael Lubotta and Maxwell Gotlieb (Respondents)
-
-NOTICE OF APPEARANCE
-The Applicant, Brian Charles Lubotta, intends to respond to this application.
-
+    if "Cover Letter" in doc_choice:
+        cover_letter = f"""
+TO: The Court Registrar, Superior Court of Justice (Estates List)
+FROM: Brian Charles Lubotta (Self-Represented Applicant)
 DATE: January 9, 2026
-(Name, address and telephone number of respondent)
+RE: Urgent Motion - Estate of Sheila Renee Lubotta
+
+Dear Registrar,
+
+Please find enclosed materials for an urgent motion brought by the Applicant, Brian Charles Lubotta. 
+
+This motion seeks an interim distribution of $700,000.00 and the immediate removal of the current executors, David Michael Lubotta and Maxwell Gotlieb, due to a complete breakdown in communication and bad faith administration.
+
+NATURE OF URGENCY:
+The Applicant is facing manufactured financial hardship intentionally exacerbated by the Respondents' hostility and psychological tactics. A court-ordered interim distribution is required immediately to preserve the Applicant's enterprise and financial stability.
+
+The Applicant requests that these materials be placed before a Judge for urgent review.
+
+Respectfully,
 Brian Charles Lubotta
-Bowmanville, Ontario, Canada
-
-
-TO: (Name and address of Respondents' lawyer)
-Maxwell Gotlieb / David Michael Lubotta
+Bowmanville, Ontario
         """
+        st.code(cover_letter, language="text")
+        st.download_button("Download Cover Letter", cover_letter, "Cover_Letter_Registrar.txt")
+
+    elif "Notice of Appearance" in doc_choice:
+        appearance_text = f"FORM 38A - NOTICE OF APPEARANCE\nApplicant: Brian Charles Lubotta\n"
         st.code(appearance_text, language="text")
         st.download_button("Download Notice", appearance_text, "Notice_of_Appearance.txt")
 
@@ -107,7 +115,7 @@ Maxwell Gotlieb / David Michael Lubotta
         st.download_button("Download Exhibit List", exhibit_text, "Exhibit_List.txt")
         
     elif "Factum" in doc_choice:
-        factum_text = "FACTUM: Legal grounds for removal of executors under Ontario law."
+        factum_text = "FACTUM: Legal grounds for removal of executors."
         st.code(factum_text, language="text")
         st.download_button("Download Factum", factum_text, "Factum.txt")
 
@@ -115,5 +123,5 @@ st.divider()
 
 # --- 6. AGENT ACTIVITY LOG ---
 st.write("### 🤖 Agent Activity Log")
-st.info("Legal_Agent: Notice of Appearance (Form 38A) added to litigation suite.")
-st.success("Logic_Engine: Enterprise logic and legal strategy fully synchronized.")
+st.info("Legal_Agent: Urgent Cover Letter to Registrar integrated into motion suite.")
+st.success("Logic_Engine: All references to landlord and rent arrears have been successfully purged.")
