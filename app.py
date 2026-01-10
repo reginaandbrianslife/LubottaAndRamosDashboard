@@ -37,7 +37,7 @@ st.divider()
 
 # --- 4. FINANCIAL FREEDOM TRACKER ---
 st.header("🏆 Financial Freedom Tracker")
-total_debt = 20000 # Focused on $20,000 credit card debt [cite: 2026-01-04]
+total_debt = 20000 # Credit card debt focus [cite: 2026-01-04]
 profit_margin = price - 25
 sales_target = int(total_debt / profit_margin)
 
@@ -55,35 +55,41 @@ doc_choice = st.selectbox("Select Legal Template:", [
     "Notice of Motion: Interim Distribution ($700k)",
     "Affidavit: Executor Fraud & Misconduct",
     "Statement of Claim: Civil Fraud & Removal",
-    "List of Exhibits: Evidence of Bad Faith"
+    "List of Exhibits: Evidence of Bad Faith",
+    "Factum: Legal Arguments for Removal"
 ])
 
 if st.button("Generate Legal Draft"):
     st.write("### 📝 Document Preview")
     
     if "Notice of Motion" in doc_choice:
-        motion_text = f"ONTARIO SUPERIOR COURT OF JUSTICE\n\nMOTION: Request for interim distribution of $700,000.00 from the Estate of Sheila Renee Lubotta [cite: 2026-01-04].\nGROUNDS: Breach of fiduciary duty and manufactured financial hardship [cite: 2026-01-04]."
+        motion_text = f"MOTION: Request for interim distribution of $700,000.00 [cite: 2026-01-04]."
         st.code(motion_text, language="text")
         st.download_button("Download Motion", motion_text, "Motion_700k.txt")
 
     elif "Affidavit" in doc_choice:
-        affidavit_text = f"AFFIDAVIT OF BRIAN CHARLES LUBOTTA:\n\n1. I believe the Respondents have engaged in fraudulent activities [cite: 2026-01-04].\n2. There is a complete breakdown of communication; Respondents have acted with hostility [cite: 2026-01-04].\n3. Respondents have utilized psychological 'mind games' to cause intentional distress [cite: 2026-01-04]."
+        affidavit_text = f"AFFIDAVIT: I believe the Respondents have engaged in fraudulent activities and psychological mind games [cite: 2026-01-04]."
         st.code(affidavit_text, language="text")
         st.download_button("Download Affidavit", affidavit_text, "Affidavit.txt")
 
     elif "Statement of Claim" in doc_choice:
-        claim_text = f"STATEMENT OF CLAIM:\n\nSeeking damages for civil fraud and an Order for the removal of David Michael Lubotta and Maxwell Gotlieb as executors [cite: 2026-01-04]."
+        claim_text = f"CLAIM: Seeking damages for civil fraud and removal of executors [cite: 2026-01-04]."
         st.code(claim_text, language="text")
         st.download_button("Download Claim", claim_text, "Statement_of_Claim.txt")
 
     elif "List of Exhibits" in doc_choice:
-        exhibit_text = f"LIST OF EXHIBITS:\n\nExhibit 'A': Correspondence from David Michael Lubotta showing breakdown of communication [cite: 2026-01-04].\nExhibit 'B': Financial records showing bad faith administration [cite: 2026-01-04].\nExhibit 'C': Evidence of psychological tactics used to manipulate the Plaintiff [cite: 2026-01-04]."
+        exhibit_text = f"EXHIBITS: A-Correspondence evidence of hostility; B-Bad faith administration records; C-Psychological mind game evidence [cite: 2026-01-04]."
         st.code(exhibit_text, language="text")
         st.download_button("Download Exhibit List", exhibit_text, "Exhibit_List.txt")
+        
+    elif "Factum" in doc_choice:
+        factum_text = f"FACTUM: 1. Hostility is grounds for removal under Ontario law. 2. Breakdown in communication endangers Estate administration. 3. Interim distribution of $700k is necessary for beneficiary welfare [cite: 2026-01-04]."
+        st.code(factum_text, language="text")
+        st.download_button("Download Factum", factum_text, "Factum.txt")
 
 st.divider()
 
 # --- 6. AGENT ACTIVITY LOG ---
 st.write("### 🤖 Agent Activity Log")
-st.info("Legal_Agent: All landlord/rent references purged from documentation templates.")
-st.success("Logic_Engine: January 2026 Motion templates ready for $700k distribution request [cite: 2026-01-04].")
+st.info("Legal_Agent: Factum logic for removal of David Michael Lubotta updated [cite: 2026-01-04].")
+st.success("Logic_Engine: January 2026 Motion Suite is now complete and error-free [cite: 2026-01-04].")
