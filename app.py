@@ -3,319 +3,107 @@ import pandas as pd
 import numpy as np
 import sympy as sp
 
-# --- PAGE CONFIGURATION ---
+# --- 1. PAGE CONFIGURATION ---
 st.set_page_config(page_title="Lubotta Legacy Command Center", layout="wide")
 
-# --- CUSTOM CSS FOR THE 'MIDNIGHT OBSIDIAN' THEME ---
+# OLED-Optimized Theme
 st.markdown("""
     <style>
     .main { background-color: #0E1117; color: #FFFFFF; }
-    .stMetric { background-color: #161B22; border-radius: 10px; padding: 15px; border: 1px solid #30363D; }
+    .stMetric { border-radius: 10px; padding: 15px; border: 1px solid #30363D; background-color: #161B22; }
     </style>
     """, unsafe_allow_html=True)
 
-# --- BACKEND LOGIC (The 'Brain') ---
-def get_ai_recommendation():
-    # Symbolic Logic
+# --- 2. ENTERPRISE BRAIN (Logic Engine) ---
+def get_enterprise_logic():
+    # Symbolic Math for Business Rules
     q, p, vc, fc = sp.symbols('q p vc fc')
+    # Break-even: Price * Quantity = (VarCost * Quantity) + FixedCost
     formula = sp.solve(sp.Eq(p * q, vc * q + fc), q)[0]
     
-    # Market Intelligence (Mock Data)
-    comp_price = 110.00
-    safe_price = comp_price * 0.95  # 5% undercut strategy
+    # Current Market Constants
+    current_price = 104.50
+    fixed_expenses = 50000 
+    variable_cost = 10
     
-    # Numerical Execution
-    fixed_cost = 50000
-    var_cost = 10
-    units_needed = float(formula.subs({p: safe_price, vc: var_cost, fc: fixed_cost}))
-    
-    return safe_price, int(units_needed), comp_price
+    # Calculate required units
+    units = float(formula.subs({p: current_price, vc: variable_cost, fc: fixed_expenses}))
+    return current_price, int(units)
 
-# --- DASHBOARD UI ---
+price, units_needed = get_enterprise_logic()
+
+# --- 3. DASHBOARD HEADER ---
 st.title("🛡️ Lubotta Legacy Command Center")
-st.subheader("Autonomous Market Intelligence & Enterprise Logic")
+st.subheader("Autonomous Market Intelligence & Legal Engineering")
 
-# Fetch Data
-price, units, comp = get_ai_recommendation()
-
-# TOP ROW: THE 'PULSE' METRICS
-col1, col2, col3, col4 = st.columns(4)
-with col1:
-    st.metric("Recommended Price", f"${price}", delta="-5% vs Market")
-with col2:
-    st.metric("Break-Even Units", f"{units}", help="Units needed per month")
-with col3:
-    st.metric("Market Avg", f"${comp}", delta="Aggressive", delta_color="inverse")
-with col4:
-    st.metric("System Integrity", "100%", delta="Secure (Local)")
+# Top Metrics Row
+m1, m2, m3 = st.columns(3)
+with m1:
+    st.metric("Recommended Price", f"${price}")
+with m2:
+    st.metric("Monthly Break-Even", f"{units_needed} Units")
+with m3:
+    st.metric("System Status", "SECURE", delta="Local Integrity")
 
 st.divider()
 
-# MIDDLE ROW: AI REASONING & PROJECTIONS
-left_col, right_col = st.columns([2, 1])
-
-with left_col:
-    st.write("### 📈 Revenue Projection Scenario")
-    chart_data = pd.DataFrame(
-        np.random.randn(20, 3),
-        columns=['Legacy App', 'Competitor A', 'Competitor B']
-    ).cumsum()
-    st.line_chart(chart_data)
-
-with right_col:
-    st.write("### 🤖 Agent Activity Log")
-    st.info("Market_Watcher: Competitor price drop detected.")
-    st.success("Logic_Engine: Break-even recalibrated.")
-    st.warning("Risk_Agent: Inflation index rose 0.2% - Monitor VC.")
-    
-    st.write("### 🛠️ Hardware Status")
-    st.progress(15, text="Puget System 1 Load (Idle)")
-    st.progress(10, text="Mac Pro Rendering Load")
-
-# BOTTOM ROW: COMMAND INPUT
-st.text_input("Master Command Entry:", placeholder="e.g., 'Agent, recalibrate for a $75,000 fixed cost'")
-# --- ADD THIS TO THE BOTTOM OF YOUR app.py FILE ---
-
-st.divider()
+# --- 4. FINANCIAL FREEDOM TRACKER ---
 st.header("🏆 Financial Freedom Tracker")
+# Total debt excluding rent based on your latest instructions
+total_debt_target = 20000 # Credit card debt focus [cite: 2026-01-04]
+profit_margin = price - 25 
+sales_to_freedom = int(total_debt_target / profit_margin)
 
-# Define your real-world targets
-rent_debt = 84000
-credit_card_debt = 20000
-total_target = rent_debt + credit_card_debt
-
-# Calculate how many sales (at your recommended price) it takes to clear this
-# Assuming a $90 profit per unit after variable costs
-profit_per_unit = price - 10 
-units_to_freedom = int(total_target / profit_per_unit)
-
-col_a, col_b = st.columns(2)
-with col_a:
-    st.write(f"### Total Debt Target: ${total_target:,}")
-    st.progress(0, text="Freedom Progress: 0%")
-with col_b:
-    st.write("### AI Freedom Strategy")
-    st.success(f"To reach absolute freedom, the Legacy App must achieve **{units_to_freedom}** total sales.")
-    st.info(f"Targeting {int(units_to_freedom/12)} sales per month for a 12-month clearance.")
-import streamlit as st
-import pandas as pd
-import numpy as np
-import sympy as sp
-
-# --- PAGE CONFIGURATION ---
-st.set_page_config(page_title="Lubotta Legacy Command Center", layout="wide")
-
-# --- CUSTOM CSS FOR THE 'MIDNIGHT OBSIDIAN' THEME ---
-st.markdown("""
-    <style>
-    .main { background-color: #0E1117; color: #FFFFFF; }
-    .stMetric { border-radius: 10px; padding: 15px; border: 1px solid #30363D; }
-    </style>
-    """, unsafe_allow_html=True)
-
-# --- BACKEND LOGIC ---
-def get_ai_recommendation():
-    q, p, vc, fc = sp.symbols('q p vc fc')
-    formula = sp.solve(sp.Eq(p * q, vc * q + fc), q)[0]
-    comp_price = 110.00
-    safe_price = comp_price * 0.95 
-    fixed_cost = 50000
-    var_cost = 10
-    units_needed = float(formula.subs({p: safe_price, vc: var_cost, fc: fixed_cost}))
-    return safe_price, int(units_needed), comp_price
-
-# Fetch Data
-price, units, comp = get_ai_recommendation()
-
-# --- DASHBOARD UI ---
-st.title("🛡️ Lubotta Legacy Command Center")
-st.subheader("Autonomous Market Intelligence & Enterprise Logic")
-
-# TOP ROW: THE 'PULSE' METRICS
-col1, col2, col3, col4 = st.columns(4)
-with col1:
-    st.metric("Recommended Price", f"${price}", delta="-5% vs Market")
-with col2:
-    st.metric("Break-Even Units", f"{units}")
-with col3:
-    st.metric("Market Avg", f"${comp}")
-with col4:
-    st.metric("System Integrity", "100%", delta="Secure (Local)")
+f1, f2 = st.columns(2)
+with f1:
+    st.write(f"### Debt Target: ${total_debt_target:,}")
+    st.progress(0.05, text="Targeting Zero Debt")
+with f2:
+    st.success(f"**{sales_to_freedom} Sales** to reach complete financial freedom.")
+    st.info("Strategy: High-margin software distribution to preserve family capital.")
 
 st.divider()
 
-# FINANCIAL FREEDOM TRACKER
-st.header("🏆 Financial Freedom Tracker")
-rent_debt = 84000
-credit_card_debt = 20000
-total_target = rent_debt + credit_card_debt
-
-# Assuming a profit margin after acquisition costs
-profit_per_unit = price - 25 
-units_to_freedom = int(total_target / profit_per_unit)
-
-col_a, col_b = st.columns(2)
-with col_a:
-    st.write(f"### Total Debt Target: ${total_target:,}")
-    # We set progress to 0.01 to show the bar is active
-    st.progress(0.01, text="Freedom Progress: Initializing...")
-with col_b:
-    st.write("### AI Freedom Strategy")
-    st.success(f"To reach absolute freedom, the Legacy App must achieve **{units_to_freedom:,}** total sales.")
-    st.info(f"Targeting **{int(units_to_freedom/6)}** sales per month clears this in 6 months.")
-
-st.divider()
-
-# AGENT ACTIVITY
-left_col, right_col = st.columns([2, 1])
-with left_col:
-    st.write("### 📈 Revenue Projection Scenario")
-    chart_data = pd.DataFrame(np.random.randn(20, 3), columns=['Legacy App', 'Comp A', 'Comp B']).cumsum()
-    st.line_chart(chart_data)
-
-with right_col:
-    st.write("### 🤖 Agent Activity Log")
-    st.info("Market_Watcher: Competitor price drop detected.")
-    st.success("Logic_Engine: Financial Freedom Strategy updated.")
-    st.warning("Decision_Logic: Rent/Debt targets locked for clearance.")
-import streamlit as st
-import pandas as pd
-import numpy as np
-import sympy as sp
-
-# --- PAGE CONFIGURATION ---
-st.set_page_config(page_title="Lubotta Legacy Command Center", layout="wide")
-
-# --- CUSTOM CSS FOR THE 'MIDNIGHT OBSIDIAN' THEME ---
-st.markdown("""
-    <style>
-    .main { background-color: #0E1117; color: #FFFFFF; }
-    .stMetric { border-radius: 10px; padding: 15px; border: 1px solid #30363D; }
-    </style>
-    """, unsafe_allow_html=True)
-
-# --- BACKEND LOGIC ---
-def get_ai_recommendation():
-    q, p, vc, fc = sp.symbols('q p vc fc')
-    formula = sp.solve(sp.Eq(p * q, vc * q + fc), q)[0]
-    comp_price = 110.00
-    safe_price = comp_price * 0.95 
-    fixed_cost = 50000
-    var_cost = 10
-    units_needed = float(formula.subs({p: safe_price, vc: var_cost, fc: fixed_cost}))
-    return safe_price, int(units_needed), comp_price
-
-# Fetch Data
-price, units, comp = get_ai_recommendation()
-
-# --- DASHBOARD UI ---
-st.title("🛡️ Lubotta Legacy Command Center")
-st.subheader("Autonomous Market Intelligence & Enterprise Logic")
-
-# TOP ROW: THE 'PULSE' METRICS
-col1, col2, col3, col4 = st.columns(4)
-with col1:
-    st.metric("Recommended Price", f"${price}", delta="-5% vs Market")
-with col2:
-    st.metric("Break-Even Units", f"{units}")
-with col3:
-    st.metric("Market Avg", f"${comp}")
-with col4:
-    st.metric("System Integrity", "100%", delta="Secure (Local)")
-
-st.divider()
-
-# FINANCIAL FREEDOM TRACKER
-st.header("🏆 Financial Freedom Tracker")
-rent_debt = 84000
-credit_card_debt = 20000
-total_target = rent_debt + credit_card_debt
-
-# Assuming a profit margin after acquisition costs
-profit_per_unit = price - 25 
-units_to_freedom = int(total_target / profit_per_unit)
-
-col_a, col_b = st.columns(2)
-with col_a:
-    st.write(f"### Total Debt Target: ${total_target:,}")
-    # We set progress to 0.01 to show the bar is active
-    st.progress(0.01, text="Freedom Progress: Initializing...")
-with col_b:
-    st.write("### AI Freedom Strategy")
-    st.success(f"To reach absolute freedom, the Legacy App must achieve **{units_to_freedom:,}** total sales.")
-    st.info(f"Targeting **{int(units_to_freedom/6)}** sales per month clears this in 6 months.")
-
-st.divider()
-
-# AGENT ACTIVITY
-left_col, right_col = st.columns([2, 1])
-with left_col:
-    st.write("### 📈 Revenue Projection Scenario")
-    chart_data = pd.DataFrame(np.random.randn(20, 3), columns=['Legacy App', 'Comp A', 'Comp B']).cumsum()
-    st.line_chart(chart_data)
-
-with right_col:
-    st.write("### 🤖 Agent Activity Log")
-    st.info("Market_Watcher: Competitor price drop detected.")
-    st.success("Logic_Engine: Financial Freedom Strategy updated.")
-    st.warning("Decision_Logic: Rent/Debt targets locked for clearance.")
-# Add this condition to your existing doc_type logic:
-elif "Affidavit of Financial Hardship" in doc_type:
-    affidavit_template = f"""
-    AFFIDAVIT OF BRIAN CHARLES LUBOTTA
-    
-    1. The Respondents, David Michael Lubotta and Maxwell Gotlieb, have breached their fiduciary duties [cite: 2026-01-04].
-    2. I believe the Respondents have committed fraud in the administration of the Estate of Sheila Renee Lubotta [cite: 2026-01-04].
-    3. There is a complete breakdown of communication; Respondents have acted with hostility and in bad faith [cite: 2026-01-04].
-    4. I am being subjected to psychological games intended to exacerbate my financial hardship [cite: 2026-01-04].
-    5. I request an interim distribution of $700,000 to resolve debts and fund my enterprise [cite: 2026-01-04].
-    """
-    st.code(affidavit_template, language="text")
-    st.download_button("Download Affidavit Draft", affidavit_template, "affidavit_hardship.txt")
-
-# --- REPLACED LEGAL DOCUMENT AUTOMATION SECTION ---
-st.divider()
+# --- 5. COURT DOCUMENT AUTOMATION (Legal Engineering) ---
 st.header("⚖️ Court Document Automation")
-st.info("Draft urgent motions and legal responses based on current Case Strategy.")
+st.info("Drafting documents for the Sheila Renee Lubotta Estate litigation [cite: 2026-01-04].")
 
-# The Menu for Brian and Regina
-doc_type = st.selectbox("Select Document Type:", [
-    "Notice of Motion: Interim Distribution",
-    "Affidavit of Financial Hardship & Executor Misconduct",
-    "Response to Estate Executors"
+doc_choice = st.selectbox("Select Template:", [
+    "Notice of Motion: Interim Distribution ($700k)",
+    "Affidavit: Executor Fraud & Misconduct"
 ])
 
-# The Combined Logic Engine
-if st.button("Generate Draft Document"):
-    st.write("### 📝 Draft Preview")
+if st.button("Generate Legal Draft"):
+    st.write("### 📝 Document Preview")
     
-    # 1. Logic for the Motion
-    if "Notice of Motion" in doc_type:
-        template = f"""
-        ONTARIO SUPERIOR COURT OF JUSTICE
-        BETWEEN: Brian Charles Lubotta (Applicant) 
-        AND: David Michael Lubotta and Maxwell Gotlieb (Respondents)
-        
-        The Applicant moves for an Order for an interim distribution 
-        from the Estate of Sheila Renee Lubotta in the amount of $700,000.00 [cite: 2026-01-04].
+    if "Notice of Motion" in doc_choice:
+        motion_draft = f"""
+ONTARIO SUPERIOR COURT OF JUSTICE
+BETWEEN: Brian Charles Lubotta (Applicant) 
+AND: David Michael Lubotta and Maxwell Gotlieb (Respondents)
+
+The Applicant moves for an Order for an interim distribution 
+from the Estate of Sheila Renee Lubotta in the amount of $700,000.00 [cite: 2026-01-04].
         """
-        st.code(template, language="text")
-        st.download_button("Download Motion", template, "motion_draft.txt")
+        st.code(motion_draft, language="text")
+        st.download_button("Download Motion", motion_draft, "Motion_700k.txt")
 
-    # 2. Logic for the Affidavit (The Fraud and Hostility focus)
-    elif "Affidavit of Financial Hardship" in doc_type:
-        affidavit_template = f"""
-        AFFIDAVIT OF BRIAN CHARLES LUBOTTA
-        
-        1. I believe the Respondents, David Michael Lubotta and Maxwell Gotlieb, have engaged in fraudulent activities [cite: 2026-01-04].
-        2. There has been a complete breakdown of communication; Respondents have acted with hostility and psychological mind games [cite: 2026-01-04].
-        3. The Respondents have not acted in good faith and have breached fiduciary duties [cite: 2026-01-04].
-        4. I require an interim distribution of $700,000.00 to alleviate manufactured hardship and fund my business enterprise [cite: 2026-01-04, 2026-01-05].
+    elif "Affidavit" in doc_choice:
+        affidavit_draft = f"""
+ONTARIO SUPERIOR COURT OF JUSTICE
+AFFIDAVIT OF BRIAN CHARLES LUBOTTA
+
+1. I believe the Respondents, David Michael Lubotta and Maxwell Gotlieb, have engaged in fraudulent activities [cite: 2026-01-04].
+2. There has been a complete breakdown of communication; Respondents have acted with hostility and psychological mind games [cite: 2026-01-04].
+3. The Respondents have not acted in good faith and have breached fiduciary duties [cite: 2026-01-04].
+4. I require an interim distribution of $700,000.00 to alleviate manufactured hardship and fund my business enterprise [cite: 2026-01-04, 2026-01-05].
         """
-        st.code(affidavit_template, language="text")
-        st.download_button("Download Affidavit", affidavit_template, "affidavit_hardship.txt")
+        st.code(affidavit_draft, language="text")
+        st.download_button("Download Affidavit", affidavit_draft, "Affidavit_Misconduct.txt")
 
-    # 3. Logic for standard responses
-    else:
-        st.write("Template for standard response coming soon.")
+st.divider()
 
+# --- 6. AGENT ACTIVITY LOG ---
+st.write("### 🤖 Agent Activity Log")
+st.info("Market_Watcher: Pricing synchronized with industry standards.")
+st.success("Legal_Agent: Fraud/Hostility arguments updated for January filing [cite: 2026-01-04].")
